@@ -7,4 +7,15 @@ Template for Julia packages.
 """
 module LegendPlots
 
-end # module
+    using Makie
+    using CairoMakie
+
+    using Dates
+    using FileIO
+    using Format
+    using Measurements: value, uncertainty
+    using PropDicts
+    using Unitful
+
+    include("propdicts.jl")
+end
