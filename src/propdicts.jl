@@ -1,11 +1,6 @@
 # This file is a part of LegendPlots.jl, licensed under the MIT License (MIT).
 
-const DeepCove = "#1A2A5B"
-const AchatBlue = "#07A9FF"
-const DiamondGrey = "#CCCCCC"
-
-
-function plot_pars(chinfo, pars, properties; legend_logo  = true, juleana_logo = true)
+function lplot(chinfo::Table, pars::PropDict, properties::AbstractVector{Symbol}; legend_logo  = true, juleana_logo = true)
 
     # Collect the unit
     u = Unitful.NoUnits
