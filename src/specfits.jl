@@ -1,7 +1,7 @@
 
 # This file is a part of LegendPlots.jl, licensed under the MIT License (MIT).
 
-function lplot(report::NamedTuple{(:par, :f_fit, :x, :y, :gof, :e_unit, :label_y, :label_fit)}; title::AbstractString = "")
+function lplot(report::NamedTuple{(:par, :f_fit, :x, :y, :gof, :e_unit, :label_y, :label_fit)}; title::AbstractString = "", legend_logo::Bool = true)
 
     fig = Figure(size = (800,500))
     ax = Axis(fig[1,1],
@@ -62,5 +62,33 @@ function lplot(report::NamedTuple{(:par, :f_fit, :x, :y, :gof, :e_unit, :label_y
 
     Makie.hspan!(ax_res, [-3], [3], color = (AchatBlue, 0.4))
     Makie.scatter!(ax_res, xvalues, res, color = DeepCove)
+
+    if legend_logo
+        ax_legend = Axis(fig,
+            bbox = BBox(775,800,000, 455),
+            backgroundcolor = :transparent,
+            leftspinevisible = false,
+            rightspinevisible = false,
+            bottomspinevisible = false,
+            topspinevisible = false,
+            xticklabelsvisible = false, 
+            yticklabelsvisible = false,
+            xgridcolor = :transparent,
+            ygridcolor = :transparent,
+            xminorticksvisible = false,
+            yminorticksvisible = false,
+            xticksvisible = false,
+            yticksvisible = false,
+            xautolimitmargin = (0.0,0.0),
+            yautolimitmargin = (0.0,0.0),
+            aspect = DataAspect()
+        )
+        img = load(joinpath(@__DIR__, "logos", "logo_legend_dkbl.png"))
+        image!(ax_legend, rot180(hcat(img, fill(Makie.RGBA(0,0,0,0), 500, 8100))))
+        legend_suffix = "-200"
+        legend_suffix *= " · " * format("{:02d}-{:04d}", Dates.month(Dates.today()), Dates.year(Dates.today()))
+        Makie.text!(ax_legend, legend_suffix, position = (0.05,0.83), color = DeepCove, fontsize = 22, font = LEGEND_FONT, rotation = 270u"°", space = :relative)   
+    end 
+
     current_figure()
 end
