@@ -1,6 +1,6 @@
 # This file is a part of LegendPlots.jl, licensed under the MIT License (MIT).
 
-function lplot(chinfo::Table, pars::PropDict, properties::AbstractVector{Symbol}; legend_logo  = true, juleana_logo = true)
+function lplot(chinfo::Table, pars::PropDict, properties::AbstractVector{Symbol}; legend_logo::Bool = true, juleana_logo::Bool = true)
 
     # Collect the unit
     u = Unitful.NoUnits
