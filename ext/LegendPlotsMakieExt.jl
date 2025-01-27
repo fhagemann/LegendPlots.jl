@@ -13,7 +13,10 @@ module LegendPlotsMakieExt
     using PropDicts: PropDict, MissingProperty
     using TypedTables: Table
     
-    using LegendPlots: LEGEND_theme, inch, pt, AchatBlue
+    using LegendPlots: LegendTheme, LegendFont,
+        DeepCove, AchatBlue, DiamondGrey,
+        LegendLogo, JuleanaLogo,
+        inch, pt, cm
 
     # extend lplot here
     import LegendPlots: lplot, lplot!
@@ -21,12 +24,9 @@ module LegendPlotsMakieExt
     function __init__()
         # maybe just use with_theme() in every plot recipe?
         @info "Updating Makie theme to LEGEND theme"
-        update_theme!(LEGEND_theme)
+        update_theme!(LegendTheme)
     end
 
-    @recipe(MyPlot, chinfo, pars, properties) do scene
-        Theme()
-    end
-
+    include("Makie/watermarks.jl")
     include("Makie/recipes.jl")
 end
