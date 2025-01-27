@@ -1,3 +1,5 @@
+# This file is a part of LegendPlots.jl, licensed under the MIT License (MIT).
+
 module LegendPlotsMakieExt
 
     using Makie
@@ -5,9 +7,12 @@ module LegendPlotsMakieExt
     using Dates
     using FileIO
     using Format
+    using PropDicts
+    using TypedTables
     using Unitful
 
-    using LegendPlots: LEGEND_theme, inch, pt
+    using LegendPlots: LEGEND_theme, inch, pt,
+        AchatBlue
 
     # extend lplot here
     import LegendPlots: lplot
@@ -19,16 +24,8 @@ module LegendPlotsMakieExt
     end
 
     @recipe(MyPlot, chinfo, pars, properties) do scene
-        Theme(
-            Axis = (
-                xlabel = "X",
-                ylabel = "Y",
-                limits = ((0,1), (0,1)),
-                aspect = 1,
-                xticklabelrotation = 90u"°",
-            ),
-        )
+        Theme()
     end
 
-
+    include("Makie/recipes.jl")
 end
