@@ -55,10 +55,10 @@ function lplot(chinfo::Table, pars::PropDict, properties::AbstractVector{Symbol}
     fig = Figure(size = (1500,500))
     axmain = Axis(fig,
         bbox = BBox(100,1470,100,500),
-        xticklabelfont = LEGEND_FONT, 
-        yticklabelfont = LEGEND_FONT,
-        xlabelfont = LEGEND_FONT,
-        ylabelfont = LEGEND_FONT,
+        xticklabelfont = LegendFont, 
+        yticklabelfont = LegendFont,
+        xlabelfont = LegendFont,
+        ylabelfont = LegendFont,
         yticklabelsize = 14,
         xlabelsize = 20,
         ylabelsize = 20,
@@ -92,11 +92,11 @@ function lplot(chinfo::Table, pars::PropDict, properties::AbstractVector{Symbol}
             yautolimitmargin = (0.0,0.0),
             aspect = DataAspect()
         )
-        img = load(joinpath(@__DIR__, "logos", "logo_legend_dkbl.png"))
+        img = load(joinpath(@__DIR__, "logo", "legend_darkblue.png"))
         image!(ax_legend, rot180(hcat(img, fill(Makie.RGBA(0,0,0,0), 500, 8100))))
         legend_suffix = "-200"
         legend_suffix *= " · " * format("{:02d}-{:04d}", Dates.month(Dates.today()), Dates.year(Dates.today()))
-        Makie.text!(ax_legend, legend_suffix, position = (0.11,0.83), color = DeepCove, fontsize = 22, font = LEGEND_FONT, rotation = 270u"°", space = :relative)   
+        Makie.text!(ax_legend, legend_suffix, position = (0.11,0.83), color = DeepCove, fontsize = 22, font = LegendFont, rotation = 270u"°", space = :relative)   
     end
 
     if juleana_logo
@@ -119,7 +119,7 @@ function lplot(chinfo::Table, pars::PropDict, properties::AbstractVector{Symbol}
             yautolimitmargin = (0.0,0.0),
             aspect = DataAspect()
         )
-        juleana = load(joinpath(@__DIR__, "logos", "logo-notext.png"))
+        juleana = load(joinpath(@__DIR__, "logo", "juleana.png"))
         image!(ax_juleana, rotr90(juleana))
     end
 

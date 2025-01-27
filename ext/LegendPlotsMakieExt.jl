@@ -1,30 +1,34 @@
 module LegendPlotsMakieExt
 
-    using MakieCore
+    using Makie
 
-    # Taken from https://docs.makie.org/stable/how-to/match-figure-size-font-sizes-and-dpi
-    const inch = 96
-    const pt   = 4/3
-    const cm   = inch / 2.54
+    using Dates
+    using FileIO
+    using Format
+    using Unitful
 
-    const LEGEND_theme = MakieCore.Theme(
-        Lines = (
-            linewidth   = 10,
-            linecap     = :round,
-            joinstyle   = :round
-        ),
-        fonts = (
-            bold        = LEGEND_FONT * " Bold",
-            bold_italic = LEGEND_FONT * " Bold Italic",
-            italic      = LEGEND_FONT * " Italic",
-            regular     = LEGEND_FONT * " Regular"
-        ),
-        palette = (
-            color = [ICPCBlue, PPCPurple, BEGeOrange, CoaxGreen],
-        ),
-        font = :regular,
-        fontsize = 9pt,
-    )
-    export LEGEND_theme
+    using LegendPlots: LEGEND_theme, inch, pt
+
+    # extend lplot here
+    import LegendPlots: lplot
+
+    function __init__()
+        # maybe just use with_theme() in every plot recipe?
+        @info "Updating Makie theme to LEGEND theme"
+        update_theme!(LEGEND_theme)
+    end
+
+    @recipe(MyPlot, chinfo, pars, properties) do scene
+        Theme(
+            Axis = (
+                xlabel = "X",
+                ylabel = "Y",
+                limits = ((0,1), (0,1)),
+                aspect = 1,
+                xticklabelrotation = 90u"°",
+            ),
+        )
+    end
+
 
 end

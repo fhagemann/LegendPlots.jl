@@ -3,31 +3,25 @@ uuid = "eb25385b-a0ff-483b-ba42-784ccc29cd42"
 version = "0.1.0"
 
 [deps]
-CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
 Format = "1fa38f19-a742-5d3f-a2b9-30dd87b9d5f8"
-Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
+MakieCore = "20f20a25-4f0e-4fdf-b5d1-57303727442b"
 Measurements = "eff96d63-e80a-5855-80a2-b1b0885c5ab7"
-PropDicts = "4dc08600-4268-439e-8673-d706fafbb426"
-TypedTables = "9d95f2ec-7b3d-5a63-8d20-e2491e220bb9"
 Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
 
 [weakdeps]
-MakieCore = "20f20a25-4f0e-4fdf-b5d1-57303727442b"
+Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
 
 [extensions]
-LegendPlotsMakieExt = "MakieCore"
+LegendPlotsMakieExt = "Makie"
 
 [compat]
-CairoMakie = "0.13"
-Dates = "<0.0.1, 1"
-FileIO = "1.16.6"
-Format = "1.3.7"
+Dates = "1"
+FileIO = "1"
+Format = "1"
 Makie = "0.22"
 MakieCore = "0.9"
-Measurements = "2.11.0"
-PropDicts = "0.2.5"
-TypedTables = "1.2"
-Unitful = "1.21.1"
+Measurements = "2.5"
+Unitful = "1.6"
 julia = "1.10"

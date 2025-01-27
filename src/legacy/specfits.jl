@@ -8,10 +8,10 @@ function lplot(report::NamedTuple{(:par, :f_fit, :x, :y, :gof, :e_unit, :label_y
         bbox = BBox(50,695,50,495),
         xgridvisible = !false,
         ygridvisible = !false,
-        xticklabelfont = LEGEND_FONT, 
-        yticklabelfont = LEGEND_FONT,
-        xlabelfont = LEGEND_FONT,
-        ylabelfont = LEGEND_FONT,
+        xticklabelfont = LegendFont, 
+        yticklabelfont = LegendFont,
+        xlabelfont = LegendFont,
+        ylabelfont = LegendFont,
         xticklabelsize = 0,
         yticklabelsize = 20,
         xticksize = 0,
@@ -28,10 +28,10 @@ function lplot(report::NamedTuple{(:par, :f_fit, :x, :y, :gof, :e_unit, :label_y
     ax_res = Axis(fig[2,1],
         xgridvisible = !false,
         ygridvisible = !false,
-        xticklabelfont = LEGEND_FONT, 
-        yticklabelfont = LEGEND_FONT,
-        xlabelfont = LEGEND_FONT,
-        ylabelfont = LEGEND_FONT,
+        xticklabelfont = LegendFont, 
+        yticklabelfont = LegendFont,
+        xlabelfont = LegendFont,
+        ylabelfont = LegendFont,
         xticklabelsize = 20,
         yticklabelsize = 20,
         xlabelsize = 20,
@@ -83,11 +83,11 @@ function lplot(report::NamedTuple{(:par, :f_fit, :x, :y, :gof, :e_unit, :label_y
             yautolimitmargin = (0.0,0.0),
             aspect = DataAspect()
         )
-        img = load(joinpath(@__DIR__, "logos", "logo_legend_dkbl.png"))
+        img = load(joinpath(@__DIR__, "logo", "legend_darkblue.png"))
         image!(ax_legend, rot180(hcat(img, fill(Makie.RGBA(0,0,0,0), 500, 8100))))
         legend_suffix = "-200"
         legend_suffix *= " · " * format("{:02d}-{:04d}", Dates.month(Dates.today()), Dates.year(Dates.today()))
-        Makie.text!(ax_legend, legend_suffix, position = (0.05,0.83), color = DeepCove, fontsize = 22, font = LEGEND_FONT, rotation = 270u"°", space = :relative)   
+        Makie.text!(ax_legend, legend_suffix, position = (0.05,0.83), color = DeepCove, fontsize = 22, font = LegendFont, rotation = 270u"°", space = :relative)   
     end 
 
     current_figure()

@@ -7,16 +7,18 @@ Template for Julia packages.
 """
 module LegendPlots
 
-    using Makie
-    using CairoMakie
+    # using Dates
+    # using FileIO
+    # using Format
+    # using Measurements: value, uncertainty
+    # using PropDicts
+    # using TypedTables
+    # using Unitful
 
     using Dates
-    using FileIO
-    using Format
-    using Measurements: value, uncertainty
-    using PropDicts
-    using TypedTables
-    using Unitful
+
+    using MakieCore
+    using MakieCore: Theme
 
     """
         lplot(...)
@@ -38,8 +40,16 @@ module LegendPlots
     const CoaxGreen   = "#008000"
 
     # Define LEGEND font
-    const LEGEND_FONT = "Roboto"
+    const LegendFont = "Roboto"
 
-    include("propdicts.jl")
-    include("specfits.jl")
+    # Taken from https://docs.makie.org/stable/how-to/match-figure-size-font-sizes-and-dpi
+    const inch = 96
+    const pt   = 4/3
+    const cm   = inch / 2.54
+
+    # Define file path for logo files
+    const LegendLogo  = joinpath(@__DIR__, "logo", "legend_darkblue.png")
+    const JuleanaLogo = joinpath(@__DIR__, "logo", "juleana.png")
+
+    include("themes.jl")
 end
