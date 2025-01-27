@@ -14,7 +14,8 @@
     )
 end
 
-function Makie.plot!(p::LPlot)
+function Makie.plot!(p::LPlot{<:Tuple{<:Table, <:PropDict, <:AbstractVector{Symbol}}})
+    
     # get info
     chinfo     = p.chinfo[]
     pars       = p.pars[]
