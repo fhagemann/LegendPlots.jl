@@ -25,7 +25,7 @@ function Makie.plot!(p::LPlot)
     for det in chinfo.detector
         if haskey(pars, det)
             mval = reduce(getproperty, properties, init = pars[det])
-            if !(mval isa PropDicts.MissingProperty)
+            if !(mval isa MissingProperty)
                 u = unit(mval)
                 break
             end
@@ -66,8 +66,28 @@ function Makie.plot!(p::LPlot)
     push!(vlines, length(labels) + 1);
     ylabel = (length(properties) > 0 ? join(string.(properties), " ") : "Quantity") * ifelse(u == NoUnits, "", " ($u)");
 
-    errorbars!(p, xvalues, ustrip.(u, value.(yvalues)), ustrip.(u, uncertainty.(yvalues)), whiskerwidth = 5, color = AchatBlue)
-    scatter!(p, xvalues, ustrip.(u, value.(yvalues)), color = AchatBlue)
-    vlines!(p, vlines .- 1, color = :black)
+
+    #     axis = Axis(p,
+#         bbox = BBox(100,1470,100,500),
+#         xticklabelfont = LEGEND_FONT, 
+#         yticklabelfont = LEGEND_FONT,
+#         xlabelfont = LEGEND_FONT,
+#         ylabelfont = LEGEND_FONT,
+#         yticklabelsize = 14,
+#         xlabelsize = 20,
+#         ylabelsize = 20,
+#         xlabel = "Detector", ylabel = ylabel, 
+#         limits = ((0, length(labels)), nothing),
+#         xticks = (eachindex(labels) .- 1, labels), 
+#         xticklabelrotation = 90u"°"
+#     )
+
+    with_theme(Theme(
+        Axis = (xlabel = "Detector")
+    )) do
+        errorbars!(p, xvalues, ustrip.(u, value.(yvalues)), ustrip.(u, uncertainty.(yvalues)), whiskerwidth = 5, color = AchatBlue)
+        scatter!(p, xvalues, ustrip.(u, value.(yvalues)), color = AchatBlue)
+        vlines!(p, vlines .- 1, color = :black)
+    end
     p
 end

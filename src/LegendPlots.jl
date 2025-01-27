@@ -22,11 +22,13 @@ module LegendPlots
 
     """
         lplot(...)
+        lplot!(...)
 
         Create plots according to the LEGEND style guide for Juleana results
     """
     function lplot end
-    export lplot
+    function lplot! end
+    export lplot, lplot!
 
    # Define LEGEND colors
     const DeepCove    = "#1A2A5B"

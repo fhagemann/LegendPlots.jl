@@ -7,15 +7,16 @@ module LegendPlotsMakieExt
     using Dates
     using FileIO
     using Format
-    using PropDicts
-    using TypedTables
     using Unitful
 
-    using LegendPlots: LEGEND_theme, inch, pt,
-        AchatBlue
+    using Measurements: value, uncertainty
+    using PropDicts: PropDict, MissingProperty
+    using TypedTables: Table
+    
+    using LegendPlots: LEGEND_theme, inch, pt, AchatBlue
 
     # extend lplot here
-    import LegendPlots: lplot
+    import LegendPlots: lplot, lplot!
 
     function __init__()
         # maybe just use with_theme() in every plot recipe?

@@ -1,6 +1,9 @@
 # This file is a part of LegendPlots.jl, licensed under the MIT License (MIT).
 
 const LEGEND_theme = Theme(
+    Axis = (
+        xlabel = "Outside",
+    ),
     Lines = (
         linewidth   = 4,
         linecap     = :round,
