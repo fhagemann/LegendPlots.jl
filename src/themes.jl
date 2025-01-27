@@ -2,7 +2,14 @@
 
 const LEGEND_theme = Theme(
     Axis = (
-        xlabel = "Outside",
+        xlabelfont = :regular,
+        ylabelfont = :regular,
+        xticklabelfont = :regular, 
+        yticklabelfont = :regular,
+        xlabelsize = 9pt,
+        ylabelsize = 9pt,
+        xticklabelsize = 9pt,
+        yticklabelsize = 9pt,
     ),
     Lines = (
         linewidth   = 4,
