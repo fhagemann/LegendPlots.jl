@@ -15,18 +15,24 @@ module LegendPlotsMakieExt
     
     using LegendPlots: LegendTheme, LegendFont,
         DeepCove, AchatBlue, DiamondGrey,
-        LegendLogo, JuleanaLogo,
+        LegendLogo, JuleanaLogo, JuleanaFullLogo,
         inch, pt, cm
 
     # extend lplot here
-    import LegendPlots: lplot, lplot!
+    import LegendPlots
+    import LegendPlots: lplot, lplot!, residualplot, residualplot!
 
     function __init__()
         # maybe just use with_theme() in every plot recipe?
-        @info "Updating Makie theme to LEGEND theme"
+        @debug "Updating Makie theme to LEGEND theme"
         update_theme!(LegendTheme)
     end
 
-    include("Makie/watermarks.jl")
+    function LegendPlots.lplot(args...; kwargs...)
+        fig = current_figure()
+        LegendPlots.lplot!(fig, args...; kwargs...)
+        fig
+    end
+
     include("Makie/recipes.jl")
 end

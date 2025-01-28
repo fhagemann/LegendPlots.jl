@@ -1,6 +1,6 @@
 # This file is a part of LegendPlots.jl, licensed under the MIT License (MIT).
 
-function add_legend_logo(; fontsize = 12, position = "outer right")
+function add_legend_logo!(; fontsize = 12, position = "outer right")
 
     fig = current_figure()
     ax = current_axis()
@@ -43,7 +43,8 @@ function add_legend_logo(; fontsize = 12, position = "outer right")
 end
 
 
-function add_juleana_logo(; logo_scale = 0.25, position = :rt)
+
+function add_juleana_logo!(; logo_scale = 0.2, position = :rt)
 
     fig = current_figure()
     ax = current_axis()
@@ -58,7 +59,7 @@ function add_juleana_logo(; logo_scale = 0.25, position = :rt)
     juleanaheight, juleanawidth = size(juleana) .* _logo_scale
     img = Makie.image!(fig.scene, rotr90(juleana))
     Makie.scale!(img, _logo_scale, _logo_scale)
-    space = min(0.02 * axwidth, 0.02 * axheight)
+    space = min(0.03 * axwidth, 0.03 * axheight)
 
     (; halign, valign) = Makie.legend_position_to_aligns(position)
     juleanax = halign == :left   ? axleft + space : axright - juleanawidth - space
@@ -67,14 +68,15 @@ function add_juleana_logo(; logo_scale = 0.25, position = :rt)
 
 end
 
-function add_internal_only()
+
+function add_text!(text::AbstractString)
 
     fig = current_figure()
     ax = current_axis()
 
     axright, axtop = ax.scene.viewport[].origin .+ ax.scene.viewport[].widths
 
-    Makie.text!(fig.scene, "INTERNAL USE ONLY", font = :bold,
+    Makie.text!(fig.scene, text, font = :bold,
         color = :red, position = (axright, axtop), align = (:right, :bottom))
 
 end

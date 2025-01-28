@@ -30,6 +30,10 @@ module LegendPlots
     function lplot! end
     export lplot, lplot!
 
+    function residualplot end
+    function residualplot! end
+    export residualplot, residualplot!
+
    # Define LEGEND colors
     const DeepCove    = "#1A2A5B"
     const AchatBlue   = "#07A9FF"
@@ -50,8 +54,9 @@ module LegendPlots
     const cm   = inch / 2.54
 
     # Define file path for logo files
-    const LegendLogo  = joinpath(@__DIR__, "logo", "legend_darkblue.png")
-    const JuleanaLogo = joinpath(@__DIR__, "logo", "juleana.png")
+    const LegendLogo      = joinpath(@__DIR__, "logo", "legend_darkblue.png")
+    const JuleanaLogo     = joinpath(@__DIR__, "logo", "juleana_small.png")
+    const JuleanaFullLogo = joinpath(@__DIR__, "logo", "juleana.png")
 
     include("themes.jl")
 end

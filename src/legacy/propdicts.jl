@@ -119,7 +119,7 @@ function lplot(chinfo::Table, pars::PropDict, properties::AbstractVector{Symbol}
             yautolimitmargin = (0.0,0.0),
             aspect = DataAspect()
         )
-        juleana = load(joinpath(@__DIR__, "logo", "juleana.png"))
+        juleana = load(JuleanaLogo)
         image!(ax_juleana, rotr90(juleana))
     end
 
