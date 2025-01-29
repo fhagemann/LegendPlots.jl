@@ -54,9 +54,10 @@ module LegendPlots
     const cm   = inch / 2.54
 
     # Define file path for logo files
-    const LegendLogo      = joinpath(@__DIR__, "logo", "legend_darkblue.png")
-    const JuleanaLogo     = joinpath(@__DIR__, "logo", "juleana_small.png")
-    const JuleanaFullLogo = joinpath(@__DIR__, "logo", "juleana.png")
+    const LegendLogo        = joinpath(@__DIR__, "logo", "legend_darkblue.png")
+    const JuleanaLogo       = joinpath(@__DIR__, "logo", "juleana_small.png")
+    const JuleanaFullLogo   = joinpath(@__DIR__, "logo", "juleana.png")
+    const JuleanaHorizontal = joinpath(@__DIR__, "logo", "juleana_horizontal.png")
 
     include("themes.jl")
 end
