@@ -120,3 +120,38 @@ function LegendPlots.lhist!(
         kwargs...
     )
 end
+
+
+function LegendPlots.lhist!(
+        h::Histogram{<:Any, 2};
+        kwargs...
+    )
+
+    fig = current_figure()
+
+    #create plot
+    ax = if !isnothing(current_axis())
+        current_axis()
+    else
+        Axis(fig[1,1],
+            titlesize = 15,
+            titlegap = 1,
+            titlealign = :right,
+            # title = get_plottitle(filekey, det, ""; additiional_type=string(aoe_type)),
+            # xlabel = "E ($e_unit)",
+            # ylabel = rich("A/E", subscript(" norm")),
+            # xticks = 0:500:3000,
+            # yticks = 0.5:0.5:1.5,
+            # limits = (0,2700,0.1,1.8),
+        )
+    end
+
+    hm = Makie.heatmap!(ax, h.edges..., replace(h.weights, 0 => NaN), colormap = :magma, colorscale = log10)
+    cb = Colorbar(fig[1,2], hm, 
+        tickformat = values -> rich.("10", superscript.(string.(Int.(log10.(values))))),
+        ticks = exp10.(0:ceil(maximum(log10.(h_aoe.weights))))
+    )
+
+    # add watermarks
+    LegendPlots.add_watermarks!(; kwargs...)
+end

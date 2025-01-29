@@ -7,7 +7,7 @@ const LegendTheme = Theme(
         xticklabelfont = :regular, 
         yticklabelfont = :regular,
         titlegap = 1,
-        titleize = 12pt,
+        titlesize = 15pt,
         xlabelsize = 15pt,
         ylabelsize = 15pt,
         xticklabelsize = 12pt,
@@ -25,7 +25,7 @@ const LegendTheme = Theme(
         whiskerwidth = 6,
     ),
     Lines = (
-        linewidth   = 6,
+        linewidth   = 4,
         linecap     = :round,
         joinstyle   = :round
     ),

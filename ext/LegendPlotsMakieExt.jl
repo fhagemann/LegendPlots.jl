@@ -7,6 +7,7 @@ module LegendPlotsMakieExt
     using Dates
     using FileIO
     using Format
+    using StatsBase
     using Unitful
 
     using Measurements: value, uncertainty
