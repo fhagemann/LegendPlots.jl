@@ -65,7 +65,7 @@ function Makie.plot!(p::ParameterPlot{<:Tuple{<:Table, <:PropDict, <:AbstractVec
     push!(vlines, length(labels) + 1);
     ylabel = ismissing(p.ylabel[]) ? (length(properties) > 0 ? join(string.(properties), " ") : "Quantity") * ifelse(u == NoUnits, "", " ($u)") : p.ylabel[]
 
-    errorbars!(p, xvalues, ustrip.(u, value.(yvalues)), ustrip.(u, uncertainty.(yvalues)), whiskerwidth = 5, color = p.color)
+    errorbars!(p, xvalues, ustrip.(u, value.(yvalues)), ustrip.(u, uncertainty.(yvalues)), color = p.color)
     scatter!(p, xvalues, ustrip.(u, value.(yvalues)), color = p.color)
     vlines!(p, vlines .- 1, color = :black)
 
