@@ -7,32 +7,8 @@ Template for Julia packages.
 """
 module LegendPlots
 
-    # using Dates
-    # using FileIO
-    # using Format
-    # using Measurements: value, uncertainty
-    # using PropDicts
-    # using TypedTables
-    # using Unitful
-
-    using Dates
-
     using MakieCore
     using MakieCore: Theme
-
-    """
-        lplot(...)
-        lplot!(...)
-
-        Create plots according to the LEGEND style guide for Juleana results
-    """
-    function lplot end
-    function lplot! end
-    export lplot, lplot!
-
-    function residualplot end
-    function residualplot! end
-    export residualplot, residualplot!
 
    # Define LEGEND colors
     const DeepCove    = "#1A2A5B"
@@ -56,8 +32,8 @@ module LegendPlots
     # Define file path for logo files
     const LegendLogo        = joinpath(@__DIR__, "logo", "legend_darkblue.png")
     const JuleanaLogo       = joinpath(@__DIR__, "logo", "juleana_small.png")
-    const JuleanaFullLogo   = joinpath(@__DIR__, "logo", "juleana.png")
-    const JuleanaHorizontal = joinpath(@__DIR__, "logo", "juleana_horizontal.png")
+    const JuleanaSimple     = joinpath(@__DIR__, "logo", "juleana_simple.png")
 
     include("themes.jl")
+    
 end
