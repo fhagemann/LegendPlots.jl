@@ -11,8 +11,7 @@ function LegendPlots.lplot!(
         report::NamedTuple{(:par, :f_fit, :x, :y, :gof, :e_unit, :label_y, :label_fit)}; 
         title::AbstractString = "", show_residuals::Bool = true,
         xticks = 500:250:2250, xlims = (500,2300), ylims = nothing,
-        legend_position = :rt, juleana_logo_position = :lb,
-        col = 1
+        col = 1, watermark::Bool = false, kwargs...
     )
 
     fig = current_figure()
@@ -57,14 +56,14 @@ function LegendPlots.lplot!(
     current_axis!(all)
 
     # add watermarks
-    LegendPlots.add_watermarks!(; kwargs...)
+    watermark && LegendPlots.add_watermarks!(; kwargs...)
 
     fig
 end
 
 function LegendPlots.lplot!(
         chinfo::Table, pars::PropDict, properties::AbstractVector{Symbol};
-        kwargs...
+        watermark::Bool = false, kwargs...
     )
 
     fig = current_figure()
@@ -74,15 +73,15 @@ function LegendPlots.lplot!(
     parameterplot!(ax, chinfo, pars, properties; kwargs...)
 
     # add watermarks
-    LegendPlots.add_watermarks!(; kwargs...)
+    watermark && LegendPlots.add_watermarks!(; kwargs...)
 
     fig
 end
 
 function LegendPlots.lhist!(
         values::AbstractVector{<:Real};
-        xlabel = "E", ylabel = "Counts", 
-        kwargs...
+        xlabel = "E", ylabel = "Counts",
+        watermark::Bool = false, kwargs...
     )
 
     fig = current_figure()
@@ -101,7 +100,7 @@ function LegendPlots.lhist!(
 
 
     # add watermarks
-    LegendPlots.add_watermarks!(;kwargs...)
+    watermark && LegendPlots.add_watermarks!(; kwargs...)
 
     fig
 end
@@ -124,7 +123,7 @@ end
 
 function LegendPlots.lhist!(
         h::Histogram{<:Any, 2};
-        kwargs...
+        watermark::Bool = false, kwargs...
     )
 
     fig = current_figure()
@@ -153,5 +152,5 @@ function LegendPlots.lhist!(
     )
 
     # add watermarks
-    LegendPlots.add_watermarks!(; kwargs...)
+    watermark && LegendPlots.add_watermarks!(; kwargs...)
 end
