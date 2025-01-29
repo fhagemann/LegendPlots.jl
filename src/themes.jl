@@ -6,10 +6,19 @@ const LegendTheme = Theme(
         ylabelfont = :regular,
         xticklabelfont = :regular, 
         yticklabelfont = :regular,
-        xlabelsize = 9pt,
-        ylabelsize = 9pt,
+        xlabelsize = 12pt,
+        ylabelsize = 12pt,
         xticklabelsize = 9pt,
         yticklabelsize = 9pt,
+    ),
+    Scatter = (
+        color = :black, # seems to be ignored, defaulting to palette colors
+        markersize = 8,
+        strokewidth = 0,
+    ),
+    Errorbars = (
+        color = :black, # seems to be ignored, defaulting to palette colors
+        whiskerwidth = 5,
     ),
     Lines = (
         linewidth   = 4,
