@@ -42,6 +42,31 @@ function add_legend_logo!(; fontsize = 12, position = "outer right")
     end
 end
 
+function add_juleana_text!(; fontsize = 12, position = :rb)
+
+    fig = current_figure()
+    ax = current_axis()
+
+    figwidth, figheight = fig.scene.viewport[].widths
+    axleft, axbot = ax.scene.viewport[].origin
+    axwidth, axheight = ax.scene.viewport[].widths
+    axright, axtop = ax.scene.viewport[].origin .+ ax.scene.viewport[].widths
+
+    juleana = load(JuleanaHorizontal)
+    # Value 0.016pt might need to be changed
+    _logo_scale = fontsize/9 * 0.016pt
+    juleanaheight, juleanawidth = size(juleana) .* _logo_scale
+    img = Makie.image!(fig.scene, rot180(juleana))
+    Makie.scale!(img, _logo_scale, _logo_scale)
+    space = 0 #min(0.03 * axwidth, 0.03 * axheight)
+
+    (; halign, valign) = Makie.legend_position_to_aligns(position)
+    juleanax = halign == :left   ? axleft - juleanaheight : axright
+    juleanay = valign == :bottom ? axbot : axtop - juleanawidth
+    Makie.translate!(img, (juleanax, juleanay))
+
+end
+
 
 
 function add_juleana_logo!(; logo_scale = 0.2, position = :rt)
@@ -67,6 +92,9 @@ function add_juleana_logo!(; logo_scale = 0.2, position = :rt)
     Makie.translate!(img, (juleanax, juleanay))
 
 end
+
+
+
 
 
 function add_text!(text::AbstractString)

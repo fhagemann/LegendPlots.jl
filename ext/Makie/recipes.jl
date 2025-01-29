@@ -17,9 +17,7 @@ function LegendPlots.lplot!(fig::Figure,
     )
 
     # create plot
-    ax = Axis(fig[1,col], 
-    #width = fig.scene.viewport[].widths[1] * 0.8
-    )
+    ax = Axis(fig[1,col])
     aoecorrectionplot!(ax, report)
     ax.title = title
     ax.titlefont = :bold
@@ -55,17 +53,22 @@ function LegendPlots.lplot!(fig::Figure,
         ax2.yticklabelspace = yspace
     end
 
-    current_axis!(ax)
+    all = Axis(fig[:,:])
+    hidedecorations!(all)
+    hidespines!(all)
+    current_axis!(all)
 
     # add watermarks
     legend_logo  && add_legend_logo!()
-    juleana_logo && add_juleana_logo!(logo_scale = 0.3, position = juleana_logo_position)
+    juleana_logo && add_juleana_text!()
+    # juleana_logo && add_juleana_logo!(logo_scale = 0.3, position = juleana_logo_position)
     if preliminary
         add_text!("PRELIMINARY")
     elseif !approved
         add_text!("INTERNAL USE ONLY")
     end
 
+   
     fig
 end
 
@@ -81,7 +84,7 @@ function LegendPlots.lplot!( fig::Figure,
 
     # add watermarks
     legend_logo  && add_legend_logo!()
-    juleana_logo && add_juleana_logo!()
+    juleana_logo && add_juleana_text!()
     if preliminary
         add_text!("PRELIMINARY")
     elseif !approved

@@ -15,7 +15,7 @@ module LegendPlotsMakieExt
     
     using LegendPlots: LegendTheme, LegendFont,
         DeepCove, AchatBlue, DiamondGrey,
-        LegendLogo, JuleanaLogo, JuleanaFullLogo,
+        LegendLogo, JuleanaLogo, JuleanaFullLogo, JuleanaHorizontal,
         inch, pt, cm
 
     # extend lplot here
