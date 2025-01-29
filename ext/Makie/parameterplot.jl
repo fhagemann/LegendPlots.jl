@@ -8,6 +8,7 @@
         legend_logo = true,
         juleana_logo = true,
         approved = false,
+        ylims = nothing,
         title = ""
     )
 end
@@ -74,7 +75,9 @@ function Makie.plot!(p::ParameterPlot{<:Tuple{<:Table, <:PropDict, <:AbstractVec
     ax.ylabel = ylabel
     ax.xticks = (eachindex(labels) .- 1, labels)
     ax.xticklabelrotation = 90u"°"
-    ax.limits = ((0, length(labels)), nothing)
+    ax.xgridvisible = true
+    ax.ygridvisible = true
+    ax.limits = ((0, length(labels)), p.ylims[])
 
     p
 end

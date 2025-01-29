@@ -15,12 +15,13 @@ module LegendPlotsMakieExt
     
     using LegendPlots: LegendTheme, LegendFont,
         DeepCove, AchatBlue, DiamondGrey,
-        LegendLogo, JuleanaLogo, JuleanaFullLogo, JuleanaHorizontal,
+        LegendLogo, JuleanaLogo, JuleanaSimple,
         inch, pt, cm
 
     # extend lplot here
     import LegendPlots
-    import LegendPlots: lplot, lplot!, residualplot, residualplot!
+    import LegendPlots: lplot, lplot!, lhist, lhist!, 
+        residualplot, residualplot!
 
     function __init__()
         # maybe just use with_theme() in every plot recipe?
@@ -29,8 +30,14 @@ module LegendPlotsMakieExt
     end
 
     function LegendPlots.lplot(args...; kwargs...)
-        fig = current_figure()
+        fig = Figure()
         LegendPlots.lplot!(fig, args...; kwargs...)
+        fig
+    end
+
+    function LegendPlots.lhist(args...; kwargs...)
+        fig = Figure()
+        LegendPlots.lhist!(fig, args...; kwargs...)
         fig
     end
 
