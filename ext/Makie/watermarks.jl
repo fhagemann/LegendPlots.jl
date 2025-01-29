@@ -93,6 +93,24 @@ function LegendPlots.add_juleana_watermark!(; logo_scale = 0.2, position = :rt)
 
 end
 
+function LegendPlots.add_watermarks!(;
+        legend_logo::Bool = false, juleana_logo::Bool = true,
+        preliminary::Bool = true, approved::Bool = false,
+        kwargs...
+    )
+    if legend_logo
+        LegendPlots.add_legend_logo!()
+    elseif juleana_logo
+        LegendPlots.add_juleana_logo!()
+    end
+
+    if preliminary
+        LegendPlots.add_text!("PRELIMINARY")
+    elseif !approved
+        LegendPlots.add_text!("INTERNAL USE ONLY")
+    end
+end
+
 
 # function LegendPlots.add_juleana_text!(; fontsize = 12, position = :rb)
 

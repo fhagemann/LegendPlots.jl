@@ -10,8 +10,6 @@ include("watermarks.jl")
 function LegendPlots.lplot!( 
         report::NamedTuple{(:par, :f_fit, :x, :y, :gof, :e_unit, :label_y, :label_fit)}; 
         title::AbstractString = "", show_residuals::Bool = true,
-        legend_logo::Bool = false, juleana_logo::Bool = true, 
-        preliminary::Bool = true, approved::Bool = false,
         xticks = 500:250:2250, xlims = (500,2300), ylims = nothing,
         legend_position = :rt, juleana_logo_position = :lb,
         col = 1
@@ -59,25 +57,13 @@ function LegendPlots.lplot!(
     current_axis!(all)
 
     # add watermarks
-    if legend_logo
-        LegendPlots.add_legend_logo!()
-    elseif juleana_logo
-        LegendPlots.add_juleana_logo!()
-    end
-
-    if preliminary
-        LegendPlots.add_text!("PRELIMINARY")
-    elseif !approved
-        LegendPlots.add_text!("INTERNAL USE ONLY")
-    end
+    add_watermarks!(; kwargs...)
 
     fig
 end
 
 function LegendPlots.lplot!(
         chinfo::Table, pars::PropDict, properties::AbstractVector{Symbol};
-        legend_logo::Bool = false, juleana_logo::Bool = true, 
-        preliminary::Bool = true, approved::Bool = false,
         kwargs...
     )
 
@@ -88,25 +74,13 @@ function LegendPlots.lplot!(
     parameterplot!(ax, chinfo, pars, properties; kwargs...)
 
     # add watermarks
-    if legend_logo
-        LegendPlots.add_legend_logo!()
-    elseif juleana_logo
-        LegendPlots.add_juleana_logo!()
-    end
-
-    if preliminary
-        LegendPlots.add_text!("PRELIMINARY")
-    elseif !approved
-        LegendPlots.add_text!("INTERNAL USE ONLY")
-    end
+    add_watermarks!(; kwargs...)
 
     fig
 end
 
 function LegendPlots.lhist!(
         values::AbstractVector{<:Real};
-        legend_logo::Bool = false, juleana_logo::Bool = true,
-        preliminary::Bool = true, approved::Bool = false,
         xlabel = "E", ylabel = "Counts", 
         kwargs...
     )
@@ -127,17 +101,7 @@ function LegendPlots.lhist!(
 
 
     # add watermarks
-    if legend_logo
-        LegendPlots.add_legend_logo!()
-    elseif juleana_logo
-        LegendPlots.add_juleana_logo!()
-    end
-
-    if preliminary
-        LegendPlots.add_text!("PRELIMINARY")
-    elseif !approved
-        LegendPlots.add_text!("INTERNAL USE ONLY")
-    end
+    add_watermarks!(;kwargs...)
 
     fig
 end

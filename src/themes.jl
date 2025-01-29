@@ -6,6 +6,8 @@ const LegendTheme = Theme(
         ylabelfont = :regular,
         xticklabelfont = :regular, 
         yticklabelfont = :regular,
+        titlegap = 1,
+        titleize = 12pt,
         xlabelsize = 15pt,
         ylabelsize = 15pt,
         xticklabelsize = 12pt,
@@ -26,6 +28,9 @@ const LegendTheme = Theme(
         linewidth   = 6,
         linecap     = :round,
         joinstyle   = :round
+    ),
+    Colorbar = (
+        minorticksvisible = true,
     ),
     Legend = (
         framevisible = false, 
@@ -87,4 +92,5 @@ function add_preliminary! end
 function add_internal_use_only! end
 function add_text! end
 function add_juleana_watermark! end
+function add_watermarks! end
 

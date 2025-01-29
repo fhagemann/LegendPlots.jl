@@ -28,9 +28,9 @@ module LegendPlotsMakieExt
         update_theme!(LegendTheme)
     end
 
-    function LegendPlots.lplot(args...; kwargs...)
+    function LegendPlots.lplot(args...; figsize = nothing, kwargs...)
         # create new Figure
-        fig = Figure()
+        fig = Figure(size = figsize)
         LegendPlots.lplot!(args...; kwargs...)
         fig
     end
