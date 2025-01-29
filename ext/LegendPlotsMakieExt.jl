@@ -20,8 +20,7 @@ module LegendPlotsMakieExt
 
     # extend lplot here
     import LegendPlots
-    import LegendPlots: lplot, lplot!, lhist, lhist!, 
-        residualplot, residualplot!
+    import LegendPlots: lplot, lplot!, lhist, lhist!, savefig
 
     function __init__()
         # maybe just use with_theme() in every plot recipe?
@@ -30,15 +29,23 @@ module LegendPlotsMakieExt
     end
 
     function LegendPlots.lplot(args...; kwargs...)
+        # create new Figure
         fig = Figure()
-        LegendPlots.lplot!(fig, args...; kwargs...)
+        LegendPlots.lplot!(args...; kwargs...)
         fig
     end
 
     function LegendPlots.lhist(args...; kwargs...)
+        # create new Figure 
         fig = Figure()
-        LegendPlots.lhist!(fig, args...; kwargs...)
+        LegendPlots.lhist!(args...; kwargs...)
         fig
+    end
+
+    function LegendPlots.savefig(name::AbstractString; kwargs...)
+        fig = current_figure()
+        isnothing(fig) && throw(ArgumentError("No figure to save to file."))
+        save(name, fig; kwargs...)
     end
 
     include("Makie/recipes.jl")

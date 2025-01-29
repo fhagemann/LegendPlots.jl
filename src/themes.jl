@@ -62,9 +62,23 @@ function lplot end
 function lplot! end
 export lplot, lplot!
 
+"""
+    lhist(...)
+    lhist!(...)
+
+    Create histograms according to the LEGEND style guide for Juleana results
+"""
 function lhist end
 function lhist! end
 export lhist, lhist!
+
+"""
+    savefig(filename::AbstractString)
+
+    Save the current figure to a file with the given `filename`.
+"""
+function savefig end
+export savefig
 
 function add_juleana_logo! end
 function add_legend_logo! end
