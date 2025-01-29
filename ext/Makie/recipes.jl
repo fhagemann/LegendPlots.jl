@@ -57,7 +57,7 @@ function LegendPlots.lplot!(
     current_axis!(all)
 
     # add watermarks
-    add_watermarks!(; kwargs...)
+    LegendPlots.add_watermarks!(; kwargs...)
 
     fig
 end
@@ -74,7 +74,7 @@ function LegendPlots.lplot!(
     parameterplot!(ax, chinfo, pars, properties; kwargs...)
 
     # add watermarks
-    add_watermarks!(; kwargs...)
+    LegendPlots.add_watermarks!(; kwargs...)
 
     fig
 end
@@ -101,7 +101,7 @@ function LegendPlots.lhist!(
 
 
     # add watermarks
-    add_watermarks!(;kwargs...)
+    LegendPlots.add_watermarks!(;kwargs...)
 
     fig
 end

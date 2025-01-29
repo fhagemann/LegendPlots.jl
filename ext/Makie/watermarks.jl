@@ -49,6 +49,7 @@ function LegendPlots.add_logo!(; fontsize = 18, position = "outer right", textco
     else
         throw(ArgumentError("Position $(position) is invalid. Please choose `outer top` or `outer right`."))
     end
+    fig
 end
 
 
@@ -66,6 +67,7 @@ function LegendPlots.add_text!(text::AbstractString)
     axright, axtop = ax.scene.viewport[].origin .+ ax.scene.viewport[].widths
     Makie.text!(fig.scene, text, font = :bold,
         color = :red, position = (axright, axtop), align = (:right, :bottom))
+    fig
 end
 
 
@@ -91,11 +93,12 @@ function LegendPlots.add_juleana_watermark!(; logo_scale = 0.2, position = :rt)
     juleanay = valign == :bottom ? axbot  + space : axtop - juleanaheight - space 
     Makie.translate!(img, (juleanax, juleanay))
 
+    fig
 end
 
 function LegendPlots.add_watermarks!(;
         legend_logo::Bool = false, juleana_logo::Bool = true,
-        preliminary::Bool = true, approved::Bool = false,
+        preliminary::Bool = true, approved::Bool = false, final::Bool = false,
         kwargs...
     )
     if legend_logo
@@ -104,11 +107,13 @@ function LegendPlots.add_watermarks!(;
         LegendPlots.add_juleana_logo!()
     end
 
-    if preliminary
+    if !final && preliminary
         LegendPlots.add_text!("PRELIMINARY")
-    elseif !approved
+    elseif !final && !approved
         LegendPlots.add_text!("INTERNAL USE ONLY")
     end
+
+    current_figure()
 end
 
 
@@ -135,4 +140,5 @@ end
 #     juleanay = valign == :bottom ? axbot : axtop - juleanawidth
 #     Makie.translate!(img, (juleanax, juleanay))
 
+#     fig
 # end
