@@ -29,14 +29,14 @@ module LegendPlotsMakieExt
         update_theme!(LegendTheme)
     end
 
-    function LegendPlots.lplot(args...; figsize = nothing, kwargs...)
+    function LegendPlots.lplot(args...; figsize = Makie.theme(:size), kwargs...)
         # create new Figure
         fig = Figure(size = figsize)
         LegendPlots.lplot!(args...; kwargs...)
         fig
     end
 
-    function LegendPlots.lhist(args...; kwargs...)
+    function LegendPlots.lhist(args...; figsize = Makie.theme(:size), kwargs...)
         # create new Figure 
         fig = Figure()
         LegendPlots.lhist!(args...; kwargs...)

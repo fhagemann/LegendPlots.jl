@@ -11,7 +11,7 @@ function LegendPlots.lplot!(
         report::NamedTuple{(:par, :f_fit, :x, :y, :gof, :e_unit, :label_y, :label_fit)}; 
         title::AbstractString = "", show_residuals::Bool = true,
         xticks = 500:250:2250, xlims = (500,2300), ylims = nothing,
-        col = 1, watermark::Bool = false, kwargs...
+        legend_position = :rt, col = 1, watermark::Bool = false, kwargs...
     )
 
     fig = current_figure()
@@ -79,7 +79,7 @@ function LegendPlots.lplot!(
 end
 
 function LegendPlots.lhist!(
-        values::AbstractVector{<:Real};
+        values::AbstractVector;
         xlabel = "E", ylabel = "Counts",
         watermark::Bool = false, kwargs...
     )
@@ -96,7 +96,7 @@ function LegendPlots.lhist!(
             limits = ((1,5), (0,nothing)),
         )
     end
-    lhistogram!(ax, values .|> value .|> ustrip; kwargs...)
+    lhistogram!(ax, values .|> value; kwargs...)
 
 
     # add watermarks
@@ -148,7 +148,7 @@ function LegendPlots.lhist!(
     hm = Makie.heatmap!(ax, h.edges..., replace(h.weights, 0 => NaN), colormap = :magma, colorscale = log10)
     cb = Colorbar(fig[1,2], hm, 
         tickformat = values -> rich.("10", superscript.(string.(Int.(log10.(values))))),
-        ticks = exp10.(0:ceil(maximum(log10.(h_aoe.weights))))
+        ticks = exp10.(0:ceil(maximum(log10.(h.weights))))
     )
 
     # add watermarks
