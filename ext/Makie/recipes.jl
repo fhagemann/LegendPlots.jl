@@ -80,7 +80,7 @@ end
 
 function LegendPlots.lhist!(
         values::AbstractVector;
-        xlabel = "E", ylabel = "Counts",
+        xlabel = "", ylabel = "",
         watermark::Bool = false, kwargs...
     )
 
@@ -107,7 +107,7 @@ end
 
 function LegendPlots.lhist!(
         values::AbstractVector{<:Quantity};
-        xlabel = "E", ylabel = "Counts", 
+        xlabel = "", ylabel = "", 
         kwargs...
     )
 
@@ -133,7 +133,7 @@ function LegendPlots.lhist!(
         current_axis()
     else
         Axis(fig[1,1],
-            titlesize = 15,
+            titlesize = 18,
             titlegap = 1,
             titlealign = :right,
             # title = get_plottitle(filekey, det, ""; additiional_type=string(aoe_type)),
