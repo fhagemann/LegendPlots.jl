@@ -38,7 +38,7 @@ module LegendPlotsMakieExt
 
     function LegendPlots.lhist(args...; figsize = Makie.theme(:size), kwargs...)
         # create new Figure 
-        fig = Figure()
+        fig = Figure(size = figsize)
         LegendPlots.lhist!(args...; kwargs...)
         fig
     end
