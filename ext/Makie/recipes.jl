@@ -216,6 +216,39 @@ function LegendPlots.lhist!(
     )
 end
 
+function LegendPlots.lplot!(
+        h::Histogram{<:Any, 1};
+        watermark::Bool = false, kwargs...
+    )
+
+    fig = current_figure()
+
+    #create plot
+    ax = if !isnothing(current_axis())
+        current_axis()
+    else
+        Axis(fig[1,1],
+            titlesize = 18,
+            titlegap = 1,
+            titlealign = :right,
+            # title = get_plottitle(filekey, det, ""; additiional_type=string(aoe_type)),
+            # xlabel = "E ($e_unit)",
+            # ylabel = rich("A/E", subscript(" norm")),
+            # xticks = 0:500:3000,
+            # yticks = 0.5:0.5:1.5,
+            # limits = (0,2700,0.1,1.8),
+        )
+    end
+
+    # use built-in method for StatsBase.Histogram, tweak appearance
+    Makie.plot!(h; kwargs...)
+
+    # add watermarks
+    watermark && LegendPlots.add_watermarks!(; kwargs...)
+
+    fig
+end
+
 
 function LegendPlots.lhist!(
         h::Histogram{<:Any, 2};
@@ -250,4 +283,6 @@ function LegendPlots.lhist!(
 
     # add watermarks
     watermark && LegendPlots.add_watermarks!(; kwargs...)
+
+    fig
 end
