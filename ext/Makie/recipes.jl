@@ -142,7 +142,7 @@ end
 
 function LegendPlots.lhist!(
         h::Histogram{<:Any, 2};
-        watermark::Bool = false, kwargs...
+        watermark::Bool = false, rasterize::Bool = false, kwargs...
     )
 
     fig = current_figure()
@@ -165,6 +165,7 @@ function LegendPlots.lhist!(
     end
 
     hm = Makie.heatmap!(ax, h.edges..., replace(h.weights, 0 => NaN), colormap = :magma, colorscale = log10)
+    hm.rasterize = rasterize
     cb = Colorbar(fig[1,2], hm, 
         tickformat = values -> rich.("10", superscript.(string.(Int.(log10.(values))))),
         ticks = exp10.(0:ceil(maximum(log10.(h.weights))))
