@@ -24,7 +24,9 @@ function LegendPlots.lplot!(
         xticks = xticks, limits = (xlims, ylims)
     )
     aoecorrectionplot!(ax, report)
-    axislegend(ax, position = legend_position)
+    if legend_position != :none 
+        axislegend(ax, position = legend_position)
+    end
 
     # add residuals
     if !isempty(report.gof) && show_residuals
@@ -57,6 +59,23 @@ function LegendPlots.lplot!(
 
     # add watermarks
     watermark && LegendPlots.add_watermarks!(; kwargs...)
+
+    fig
+end
+
+
+function LegendPlots.lplot!( 
+        report::NamedTuple{(:par, :f_fit, :x, :y, :gof, :e_unit, :label_y, :label_fit)},
+        com_report::NamedTuple{(:values, :label_y, :label_fit, :energy)};
+        legend_position = :rt, col = 1, kwargs...
+    )
+
+    fig = LegendPlots.lplot!(report, legend_position = :none, col = col; kwargs...)
+
+    g = last(Makie.contents(fig[1,col]))
+    ax = contents(g)[1]
+    lines!(ax, com_report.energy, com_report.values, linewidth = 4, color = :red, linestyle = :dash, label = com_report.label_fit)
+    axislegend(ax, position = legend_position)
 
     fig
 end
