@@ -8,10 +8,10 @@
     )
 end
 
-function Makie.plot!(p::ResidualPlot{<:Tuple{NamedTuple{(:par, :f_fit, :x, :y, :gof, :e_unit, :label_y, :label_fit)}}})
+function Makie.plot!(p::ResidualPlot{<:Tuple{NamedTuple{(:x, :residuals_norm)}}})
     report = p.report[]
     xvalues = report.x
-    res = report.gof.residuals_norm
+    res = report.residuals_norm
     hspan!(p, [-3], [3], color = p.color_3σ)
     hspan!(p, [-1], [1], color = p.color_1σ)
     scatter!(p, xvalues, res, color = p.color)

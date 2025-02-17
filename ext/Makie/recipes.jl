@@ -37,7 +37,7 @@ function LegendPlots.lplot!(
             xlabel = "E ($(report.e_unit))", ylabel = "Residuals (σ)",
             xticks = xticks, yticks = -3:3:3, limits = (xlims,(-5,5))
         )
-        residualplot!(ax2, report)
+        residualplot!(ax2, (x = report.x, residuals_norm = report.gof.residuals_norm))
 
         # link axis and put plots together
         linkxaxes!(ax, ax2)
